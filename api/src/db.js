@@ -31,8 +31,8 @@ sequelize.models = Object.fromEntries(capsEntries);
 const { Videogame, Genre } = sequelize.models;
 
 // Associations
-// Videogame.belongsToMany(Genre, { through: 'VideogameGenres' });
-// Genre.belongsToMany(Videogame, { through: 'VideogameGenres' });
+Videogame.belongsToMany(Genre, { through: 'VideogameGenres' });
+Genre.belongsToMany(Videogame, { through: 'VideogameGenres' });
 
 module.exports = {
   ...sequelize.models,
