@@ -11,8 +11,19 @@ module.exports = (sequelize) => {
     },
     name: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
+      validate: {
+        notEmpty: true
+      }
     },
   },
-  { timestamps: false });
+  {
+    indexes: [
+      { 
+        unique: true,   
+        fields: [sequelize.fn('lower', sequelize.col('name'))]   
+      }
+    ],
+    timestamps: false
+  });
 };

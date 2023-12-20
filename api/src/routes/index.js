@@ -1,10 +1,10 @@
 const { Router } = require('express');
-// const authRouter = require('./auth.js');
+const getGenres = require('../controllers/getGenres');
 
 
 const router = Router();
 
-// router.use('/auth', authRouter);
+router.use('/genres', getGenres);
 
 
 module.exports = router;
