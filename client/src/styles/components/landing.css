@@ -1,0 +1,19 @@
+.landing-box {
+    background-color: magenta;
+    color: white;
+    padding: 20px;
+    border: 4px dashed white;
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    0% {
+      border-color: white;
+    }
+    50% {
+      border-color: transparent;
+    }
+    100% {
+      border-color: white;
+    }
+}
