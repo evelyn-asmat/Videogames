@@ -1,12 +1,15 @@
 import "../styles/components/landing.css";
 
+import { Link } from "react-router-dom";
+
 export default function Landing() {
     return (
         <div className="landing-box">
-            <p>Videogames</p>
+            <p>VIDEOGAMES</p>
             <p>By Evelyn Asmat</p>
-
-            <button>Go</button>
+            <Link to="/home">
+                <button>&lt; PRESS START &gt;</button>
+            </Link>
         </div>
     );
  }
