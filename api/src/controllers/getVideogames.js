@@ -23,6 +23,9 @@ const getVideogames = async (req, res) => {
                 where: {
                     name: { [Op.iLike]: `%${name}%` }
                 },
+                order: [
+                    [{ model: Genre, as: 'genres' }, 'name', 'ASC']
+                ],
                 limit: 15
             });
             URL = `${URL}&search=${name}&page_size=15`;
@@ -35,21 +38,36 @@ const getVideogames = async (req, res) => {
                         attributes: []
                     }
                 },
-                attributes: { exclude: ['description'] } 
+                attributes: { exclude: ['description'] },
+                order: [
+                    [{ model: Genre, as: 'genres' }, 'name', 'ASC']
+                ]
             });
-            URL = `${URL}&page_size=10`;
+            URL = `${URL}&page_size=100`;
         }
         const { data } = await axios(URL);
         const videogamesApi = data.results.map(v => ({ 
             id: v.id,
             name: v.name,
-            platforms: v.platforms.map(p => (p.platform.name)),
+            platforms: v.platforms.map(p => p.platform.name),
             image: v.background_image,
             released: v.released,
             rating: v.rating,
-            genres: v.genres.map(g => ({id:g.id, name:g.name})),
+            genres: v.genres.map(g => ({ id: g.id, name: g.name })).sort(),
         }));
-        res.json([...videogamesDb, ...videogamesApi]);
+        
+        const allVideogames = [...videogamesDb, ...videogamesApi].sort((a, b) => a.name.localeCompare(b.name));
+        allVideogames.forEach(game => {
+            if (Array.isArray(game.platforms)) {
+              game.platforms.sort((a, b) =>  a.toLowerCase().localeCompare(b.toLowerCase()));
+            }
+        });
+
+        if (name) {
+            return res.json(allVideogames.slice(0,14));
+        } else {
+            return res.json(allVideogames);
+        }
     } catch (error) {
         res.status(500).send(error.message);
     }

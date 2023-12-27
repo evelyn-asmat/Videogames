@@ -3,28 +3,27 @@
 @import url('https://fonts.googleapis.com/css2?family=VT323');
 
 :root {
-    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-    line-height: 1.5;
-    font-weight: 400;
-
-    color-scheme: light dark;
-    color: rgba(255, 255, 255, 0.87);
     background-color: #242424;
+    color: white;
 
     font-synthesis: none;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 
+    
+    --color-landing-pink: deeppink;
+    --color-pink: #ff3385;
+    --color-highlight-text: #bdc3c7;
+    --color-label-1: #3498db;
+    --color-label-2: #27ae60;
+    --color-card: #2c3e50;
+    --color-text-card: white;
+
 	--pixel-border: black;
 	--pixel-border-2: white;
 	--pixel-border-3: var(--pixel-border);
-	--pixel: .125rem;
-
-    --color-landing-pink: deeppink;
-    --color-pink: #ff3385;
-    --color-bright-pink: #cc99ff;
-    --color-card: lightblue;
+	--pixel: .15rem;
 }
 
 #root {
@@ -85,11 +84,12 @@ img[alt]:after {
     justify-content: center;
     position: absolute;
     top: 0;
-    left: 5%;
-    width: 90%;
-    height: 60%;
+    left: 0;
+    width: 100%;
+    height: 100%;
     background: #ddd;
     border-radius: 5px;
     content: "😵 " attr(alt);  
     font-family: 'VT323', monospace;
+    color: #333;
 }
