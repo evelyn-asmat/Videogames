@@ -1,0 +1,64 @@
+.pixel {
+    font-size: 14px;
+    height: auto;
+    margin: 1px 6px;
+    padding: 2px 4px;
+    font-family: 'VT323';
+
+    position: relative;
+    display: inline-block;
+    vertical-align: top;
+    text-transform: uppercase;
+
+    cursor: pointer;
+
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
+    width: auto;
+    z-index: 2;
+
+    p {
+        margin: 0;
+    }
+
+    &:active {
+        top: 2px;
+    }
+
+    &::before {
+        content: "";
+        display: block;
+        position: absolute;
+        top: 5px;
+        bottom: 5px;
+        left: -5px;
+        right: -5px;
+        z-index: -1;
+    }
+
+    &::after {
+        content: "";
+        display: block;
+        position: absolute;
+        top: 2px;
+        bottom: 2px;
+        left: -3px;
+        right: -3px;
+        z-index: -1;
+    }
+
+    &, &::before, &::after {
+        color: #ffffff;
+        background: var(--color-label-1);
+    }
+    
+    &.label2, &.label2::before, &.label2::after {
+        color: #ffffff;
+        background: var(--color-label-2);
+    }
+}
