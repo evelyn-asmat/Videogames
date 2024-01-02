@@ -7,6 +7,8 @@ const { API_KEY } = process.env;
 let URL = `https://api.rawg.io/api/games?key=${API_KEY}`;
 
 const getVideogames = async (req, res) => {
+    const page = parseInt(req.query.page) || 1;
+    const limit = parseInt(req.query.limit) || 15;
     const { name } = req.query;
     try {
         let videogamesDb;
@@ -63,10 +65,13 @@ const getVideogames = async (req, res) => {
             }
         });
 
+        res.header('total-videogames', allVideogames.length);
+
+        const startIndex = (page - 1) * limit;
         if (name) {
-            return res.json(allVideogames.slice(0,14));
+            return res.json(allVideogames.slice(0,limit));
         } else {
-            return res.json(allVideogames);
+            return res.json(allVideogames.slice(startIndex, startIndex + limit));
         }
     } catch (error) {
         res.status(500).send(error.message);

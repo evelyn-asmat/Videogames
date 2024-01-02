@@ -67,6 +67,7 @@ button {
     cursor: pointer;
     transition: border-color 0.25s;
     text-shadow: 0px 2px hotpink;
+    color: white;
 }
 
 button:hover {
@@ -92,4 +93,9 @@ img[alt]:after {
     content: "😵 " attr(alt);  
     font-family: 'VT323', monospace;
     color: #333;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
 }

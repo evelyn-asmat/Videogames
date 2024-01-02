@@ -1,11 +1,17 @@
 import '../styles/components/card.css'
 
+import { Link } from 'react-router-dom';
+
 export default function Card(props) {
     return (
         <div className="card pixel-border">
             <div className='main'>
-                <img className='card-image' src={props.image} alt={props.name}/>
-                <h1>{props.name}</h1>
+                <Link to={`/detail/${props.id}`}>
+                    <img className='card-image' src={props.image} alt={props.name}/>
+                </Link>
+                <Link to={`/detail/${props.id}`}>
+                    <h1>{props.name}</h1>
+                </Link>
                 <div className='platforms'>
                     {props.platforms &&
                         props.platforms.map((platform, index) => {

@@ -62,3 +62,12 @@
         background: var(--color-label-2);
     }
 }
+#detail-data {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    img {
+        width: 80%;        
+    }
+}

@@ -20,7 +20,7 @@ export default function Detail(props) {
                 window.alert('No hay personajes con ese ID');
             }
             document.getElementById('spinner').style.display = 'none';
-            document.getElementById('detail-data').style.display = 'block';
+            document.getElementById('detail-data').style.display = 'flex';
         }
         ); 
         return setVideogame({});
@@ -28,34 +28,38 @@ export default function Detail(props) {
 
     return (
         <div className="detail">
+            <h1>{videogame.name}</h1>
+            <p>{videogame.released}</p>
+            <p>{videogame.rating}</p>
             <div id="spinner" className="fa-3x">
-               <i className="fa-solid fa-spinner fa-spin-pulse"></i>
+                Cargando...
             </div>
             <div id="detail-data">
-                <h1>{videogame.name}</h1>
-                <div dangerouslySetInnerHTML={{ __html: videogame.description }} />
-                <div className='platforms'>
-                    {videogame.platforms &&
-                        videogame.platforms.map((platform, index) => {
-                            return (
-                                <div className='pixel' key={index}><p>{platform}</p></div>
-                            )
-                        })
-                    }
+                <div id="wrap-image">
+                    <img src={videogame.image} alt={videogame.name} />
                 </div>
-                <img src={videogame.image} alt={videogame.name} />
-                <p>{videogame.released}</p>
-                <p>{videogame.rating}</p>
-                <div className='genres'>
-                    {videogame.genres &&
-                        videogame.genres.map((genre, index) => {
-                            return (
-                                <div className='pixel label2' key={index}>
-                                    <p>{genre.name}</p>
-                                </div>
-                            )
-                        })
-                    }
+                <div>
+                    <div className='platforms'>
+                        {videogame.platforms &&
+                            videogame.platforms.map((platform, index) => {
+                                return (
+                                    <div className='pixel' key={index}><p>{platform}</p></div>
+                                )
+                            })
+                        }
+                    </div>
+                    <div dangerouslySetInnerHTML={{ __html: videogame.description }} />
+                    <div className='genres'>
+                        {videogame.genres &&
+                            videogame.genres.map((genre, index) => {
+                                return (
+                                    <div className='pixel label2' key={index}>
+                                        <p>{genre.name}</p>
+                                    </div>
+                                )
+                            })
+                        }
+                    </div>
                 </div>
             </div>
         </div>
