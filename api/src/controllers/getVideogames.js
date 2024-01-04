@@ -65,12 +65,12 @@ const getVideogames = async (req, res) => {
             }
         });
 
-        res.header('total-videogames', allVideogames.length);
-
         const startIndex = (page - 1) * limit;
         if (name) {
+            res.header('total-videogames', 15);
             return res.json(allVideogames.slice(0,limit));
         } else {
+            res.header('total-videogames', allVideogames.length);
             return res.json(allVideogames.slice(startIndex, startIndex + limit));
         }
     } catch (error) {

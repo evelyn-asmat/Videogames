@@ -1,0 +1,15 @@
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.pagination ul {
+    list-style: none;
+    display: flex;
+    padding: 0;
+}
+
+.pagination .active button{
+    background-color: var(--color-label-2);
+    color: white;
+}
