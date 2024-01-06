@@ -1,5 +1,7 @@
 .form {
     display: flex;
+    justify-content: center;
+    width: 50%;
     padding: 0.4em 1.3em;
     background-color: var(--color-form-bg);
     color: white;

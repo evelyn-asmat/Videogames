@@ -18,7 +18,7 @@ function App() {
 
   const [videogames, setVideogames] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(1);
+  const [totalPages, setTotalPages] = useState(0);
 
   const onSearch = async (name) => {
     if ( !name ){

@@ -14,7 +14,7 @@ export default function SearchBar(props) {
 
     return (
         <div className="search-bar">
-            <input type='search' onChange={handleChange} value={name} placeholder="Name" />
+            <input type='search' className="pixel-input" onChange={handleChange} value={name} placeholder="Name" />
             <button onClick={handleClick}>Search</button>
         </div>
     );
