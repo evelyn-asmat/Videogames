@@ -4,6 +4,7 @@
   padding: 20px;
   border: 4px dashed white;
   animation: blink 1s infinite;
+  border-radius: 8px;
 }
 
 @keyframes blink {

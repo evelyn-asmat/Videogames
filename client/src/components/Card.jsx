@@ -16,18 +16,19 @@ export default function Card(props) {
                     {props.platforms &&
                         props.platforms.map((platform, index) => {
                             return (
-                                <div className='pixel' key={index}><p>{platform}</p></div>
+                                <div className='pixel-label' key={index}><p>{platform}</p></div>
                             )
                         })
                     }
                 </div>
                 <div className='card-info'>
                     <div className="released">
-                        <ins><img src="https://img.icons8.com/water-color/15/pixel-heart.png" alt="calendar-icon"/></ins>
+                        <img src="https://cdn-icons-png.flaticon.com/512/9965/9965934.png" width="24" alt="Released"/>
+                        {/* <img src="https://img.icons8.com/water-color/18/ff2a6d/pixel-heart.png" alt="calendar-icon"/> */}
                         <p>{props.released}</p>
                     </div>
                     <div className="rating">
-                        <ins><img width="18" height="18" src="https://img.icons8.com/ios/15/fcc419/pixel-star.png" alt="star-icon"/></ins>
+                        <img width="18" src="https://img.icons8.com/ios/15/fcc419/pixel-star.png" alt="star-icon"/>
                         <p>{props.rating}</p>
                     </div>
                 </div>
@@ -36,7 +37,7 @@ export default function Card(props) {
                     {props.genres &&
                         props.genres.map((genre, index) => {
                             return (
-                                <div className='pixel label2' key={index}>
+                                <div className='pixel-label label2' key={index}>
                                     <p>{genre.name}</p>
                                 </div>
                             )

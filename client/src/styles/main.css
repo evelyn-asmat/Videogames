@@ -1,9 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P');
 @import url('https://fonts.googleapis.com/css2?family=Orbitron');
 @import url('https://fonts.googleapis.com/css2?family=VT323');
+@import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans&display=swap');
 
 :root {
-    background-color: #242424;
+    background-color: #272727;
+    background-image: url("tetris.jpg");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    height: 100vh;
     color: white;
 
     font-synthesis: none;
@@ -13,12 +19,16 @@
 
     
     --color-landing-pink: deeppink;
-    --color-pink: #ff3385;
-    --color-highlight-text: #bdc3c7;
-    --color-label-1: #3498db;
-    --color-label-2: #27ae60;
-    --color-card: #2c3e50;
+    --color-pink: #ff2a6d;
+    --color-highlight-text: #d1f7ff;
+    --color-label-1: #2c5ad9;
+    --color-label-2: #c430a5;
+    --color-card: #1a1a1a;
     --color-text-card: white;
+    --color-form-bg: #1a1a1a;
+    --color-form-border: white;
+    --color-input: #fff;
+    --color-input-border: #fff;
 
 	--pixel-border: black;
 	--pixel-border-2: white;
@@ -43,7 +53,8 @@ body {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    font-family: 'Orbitron', sans-serif;
+    font-family: 'VT323', monospace;
+    font-size: 24px;
 }
 
 body:has(.landing) {
@@ -53,13 +64,13 @@ body:has(.landing) {
 }
 
 h1, h2, h3 {
-    font-family: 'VT323', monospace;
+    font-family: 'Press Start 2P', sans-serif;
 }
 
 button {
     border-radius: 8px;
     border: 1px solid transparent;
-    padding: 0.6em 1.2em;
+    padding: 0.3em 1em;
     font-size: 1em;
     font-weight: 500;
     font-family: inherit;
@@ -93,6 +104,7 @@ img[alt]:after {
     content: "😵 " attr(alt);  
     font-family: 'VT323', monospace;
     color: #333;
+    font-size: 0.7em;
 }
 
 a {

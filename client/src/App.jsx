@@ -1,9 +1,12 @@
+import './styles/elements/pixel.css'
+
 import { Route, Routes, useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
 import Cards from './components/Cards';
 import Detail from './components/Detail';
 import Error from './components/Error';
+import Form from './components/Form';
 import Landing from './components/Landing';
 import Nav from './components/Nav';
 import axios from 'axios';
@@ -65,6 +68,7 @@ function App() {
         <Route path="/" element={<Landing />} />
         <Route path="/home" element={<Cards videogames={videogames} currentPage={currentPage} totalPages={totalPages} onPageChange={handlePageChange}/>} />
         <Route path="/detail/:id" element={<Detail />} />
+        <Route path="/form" element={<Form />} />
         <Route path="*" element={<Error />} />
       </Routes>
     </div>
