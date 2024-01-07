@@ -22,3 +22,19 @@
 .form-group-row .form-group {
     flex-basis: calc(50% - 30px);
 }
+
+.form-image-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+    
+    input {
+        height: 22px;
+    }
+    
+    .image-preview {
+        max-height: 100px;
+        width: auto;
+    }
+}

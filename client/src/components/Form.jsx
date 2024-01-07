@@ -5,9 +5,11 @@ import { useEffect, useState } from "react";
 import { API_URL } from '../utils/constants';
 import axios from 'axios';
 import maxDate from "../utils/date";
+import { useNavigate } from "react-router-dom";
 import validation from "../utils/validation";
 
 export default function Form(props) {
+    const navigate = useNavigate();
     const [genres, setGenres] = useState([]);
     const [videogameData, setVideogameData] = useState({
         name: "",
@@ -28,7 +30,17 @@ export default function Form(props) {
         genres: "",
     })
 
-    const handleChange = (event) => {
+    const handleChange = async (event) => {
+        if (event.target.name === "image") {
+            const selectedFile = event.target.files[0];
+            const reader = new FileReader();
+
+            if (selectedFile) reader.readAsDataURL(selectedFile);
+
+            reader.onload = () => {
+                setVideogameData({ ...videogameData, image: reader.result});
+            }
+        }
         setVideogameData({ ...videogameData, [event.target.name]: event.target.value });
         setErrors(
             validation({
@@ -102,15 +114,17 @@ export default function Form(props) {
                 
                 <div className="form-group">
                     <label htmlFor="image">Image*</label>
-                    <input
-                        type="file"
-                        id="image"
-                        name="image"
-                        className="pixel-input"
-                        accept=".jpg, .jpeg, .png, .svg, .gif"
-                        value={videogameData.image}
-                        onChange={handleChange}
-                    />
+                    <div className="form-image-container">
+                        <input
+                            type="file"
+                            id="image"
+                            name="image"
+                            className="pixel-input"
+                            accept=".jpg, .jpeg, .png, .svg, .gif"
+                            onChange={handleChange}
+                        />
+                        {videogameData.image && <img src={videogameData.image} alt="Uploaded image" className='image-preview'/>}
+                    </div>
                     <p className="form-error">{errors.image ? errors.image : null}</p>
                 </div>
 
@@ -140,7 +154,7 @@ export default function Form(props) {
                             value={videogameData.rating}
                             onChange={handleChange}
                         />
-                        <div className="rating-selected">{videogameData.rating}</div>
+                        <div className="input-selected">{videogameData.rating}</div>
                         <p className="form-error">{errors.rating ? errors.rating : null}</p>
                     </div>
                 </div>
