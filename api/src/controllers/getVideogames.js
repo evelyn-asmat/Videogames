@@ -40,10 +40,7 @@ const getVideogames = async (req, res) => {
                         attributes: []
                     }
                 },
-                attributes: { exclude: ['description'] },
-                order: [
-                    [{ model: Genre, as: 'genres' }, 'name', 'ASC']
-                ]
+                attributes: { exclude: ['description'] }
             });
             URL = `${URL}&page_size=100`;
         }
@@ -58,7 +55,7 @@ const getVideogames = async (req, res) => {
             genres: v.genres.map(g => ({ id: g.id, name: g.name })).sort(),
         }));
         
-        const allVideogames = [...videogamesDb, ...videogamesApi].sort((a, b) => a.name.localeCompare(b.name));
+        const allVideogames = [...videogamesDb, ...videogamesApi];
         allVideogames.forEach(game => {
             if (Array.isArray(game.platforms)) {
               game.platforms.sort((a, b) =>  a.toLowerCase().localeCompare(b.toLowerCase()));
