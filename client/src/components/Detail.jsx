@@ -2,17 +2,16 @@ import '../styles/components/detail.css'
 
 import { useEffect, useState } from "react";
 
+import { API_URL } from '../utils/constants';
 import axios from "axios";
 import { useParams } from "react-router-dom";
-
-const URL = "http://localhost:3001/videogames";
 
 export default function Detail(props) {
    const {id} = useParams();
    const [videogame, setVideogame] = useState({});
 
     useEffect(() => {
-        axios(`${URL}/${id}`).then(
+        axios(`${API_URL}/videogames/${id}`).then(
         ({ data }) => {
             if (data.name) {
                 setVideogame(data);

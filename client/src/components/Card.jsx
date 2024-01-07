@@ -23,12 +23,11 @@ export default function Card(props) {
                 </div>
                 <div className='card-info'>
                     <div className="released">
-                        <img src="https://cdn-icons-png.flaticon.com/512/9965/9965934.png" width="24" alt="Released"/>
-                        {/* <img src="https://img.icons8.com/water-color/18/ff2a6d/pixel-heart.png" alt="calendar-icon"/> */}
+                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAACXBIWXMAAAsTAAALEwEAmpwYAAABMUlEQVR4nM2Tr1LDQBDGIxEIJKKij4BEMFNcvo2BR+gjIDrdAxMeoAKJqEAieIgIRN1uZ+qJQCB4BGZg9vLvmEmTFiK6M79J5rL5bvfbuyg6hJivMWKJx8Z8jdG/BVmRO6VvgxV5V+KrJYSEFfjKirVzq84pZn2COQstWeJphVN6ZMWF4d8lnqabybHPt5wuQSdYsMJZ4myTnDabVBvQZ7iZ5TrBotOfUjS/Fbr2xivem2rxFdrRKxYGK2W18U1F29vrC2vZGy94cYIbgwXP0RDBSk/GIGKDCTrBg/noEXyU+JbtWXyD20mMhe73JZWrk1ogfZscscSXNUrZnSRnrYNSyqoz6jQBC1blSRgHFdk1Ko6IsY81XP7bKvhrcRhBrOpB7Iq0tGyG/mUQW4dy0PEDAwpOANKGHo4AAAAASUVORK5CYII=" alt='Released'/>
                         <p>{props.released}</p>
                     </div>
                     <div className="rating">
-                        <img width="18" src="https://img.icons8.com/ios/15/fcc419/pixel-star.png" alt="star-icon"/>
+                        <img src="https://img.icons8.com/ios/16/f9bd2c/pixel-star.png" alt="star-icon"/>
                         <p>{props.rating}</p>
                     </div>
                 </div>

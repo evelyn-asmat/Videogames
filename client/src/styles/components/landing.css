@@ -1,3 +1,7 @@
+.landing {
+  display: flex;
+  justify-content: center;
+}
 .landing-box {
   background-color: var(--color-landing-pink);
   color: white;

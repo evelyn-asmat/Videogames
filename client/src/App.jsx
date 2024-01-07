@@ -3,6 +3,7 @@ import './styles/elements/pixel.css'
 import { Route, Routes, useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
+import { API_URL } from './utils/constants';
 import Cards from './components/Cards';
 import Detail from './components/Detail';
 import Error from './components/Error';
@@ -10,8 +11,6 @@ import Form from './components/Form';
 import Landing from './components/Landing';
 import Nav from './components/Nav';
 import axios from 'axios';
-
-const URL = "http://localhost:3001/videogames"
 
 function App() {
   const location = useLocation();
@@ -25,7 +24,7 @@ function App() {
       return getVideogames();
     }
     try {
-      const response = await axios(`${URL}?name=${name}`);
+      const response = await axios(`${API_URL}/videogames?name=${name}`);
       setVideogames(response.data);
       setTotalPages(Math.ceil(response.headers['total-videogames'] / 15));
     } catch (error) {
@@ -35,7 +34,7 @@ function App() {
 
   const getVideogames = async () => {
     try {
-      const response = await axios(`${URL}?page=${currentPage}&limit=15`);
+      const response = await axios(`${API_URL}/videogames?page=${currentPage}&limit=15`);
       setVideogames(response.data);
       setTotalPages(Math.ceil(response.headers['total-videogames'] / 15));
     } catch (error) {

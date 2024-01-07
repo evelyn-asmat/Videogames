@@ -2,6 +2,10 @@
     display: flex;
     justify-content: center;
     align-items: center;
+
+    img {
+        filter: brightness(5);
+    }
 }
 .pagination ul {
     list-style: none;
