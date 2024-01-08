@@ -4,7 +4,27 @@
 @import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans&display=swap');
 
 :root {
-    background-color: #272727;
+    --color-bg: #272727;
+    --color-button: #1a1a1a;
+    --color-deeppink: deeppink;
+    --color-pink: #ff2a6d;
+    --color-highlight-text: white;
+    --color-label-1: #2c5ad9;
+    --color-label-2: #27a4d4;
+    --color-card: #1a1a1a;
+    --color-text-card: white;
+    --color-form-bg: #1a1a1a;
+    --color-form-border: white;
+    --color-input: #fff;
+    --color-input-border: #fff;
+    --color-error: #d7153f;
+    
+    --pixel-border: black;
+    --pixel-border-2: white;
+    --pixel-border-3: var(--pixel-border);
+    --pixel: .15rem;
+
+    background-color: var(--color-bg);
     background-image: url("tetris.jpg");
     background-size: cover;
     background-position: center;
@@ -16,31 +36,13 @@
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-
-    
-    --color-landing-pink: deeppink;
-    --color-pink: #ff2a6d;
-    --color-highlight-text: #d1f7ff;
-    --color-label-1: #2c5ad9;
-    --color-label-2: #c430a5;
-    --color-card: #1a1a1a;
-    --color-text-card: white;
-    --color-form-bg: #1a1a1a;
-    --color-form-border: white;
-    --color-input: #fff;
-    --color-input-border: #fff;
-
-	--pixel-border: black;
-	--pixel-border-2: white;
-	--pixel-border-3: var(--pixel-border);
-	--pixel: .15rem;
 }
 
 #root {
     max-width: 1280px;
     width: 100%;
     margin: 0 auto;
-    padding: 2rem;
+    padding: 1rem 2rem;
     text-align: center;
 }
 
@@ -69,25 +71,18 @@ h1, h2, h3 {
 }
 
 button {
-    border-radius: 8px;
     border: 1px solid transparent;
-    padding: 0.3em 1em;
-    font-size: 1em;
-    font-weight: 500;
+    padding: 0 0.6em;
+    margin: 0;
+    font-size: 0.9em;
     font-family: inherit;
-    background-color: #1a1a1a;
+    background-color: var(--color-button);
     cursor: pointer;
-    transition: border-color 0.25s;
     color: white;
 }
 
 button:hover {
-    border-color: #646cff;
-}
-
-button:focus,
-button:focus-visible {
-    outline: 4px auto -webkit-focus-ring-color;
+    color: var(--color-label-2);
 }
 
 img[alt]:after {  

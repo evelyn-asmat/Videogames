@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 export default function Landing() {
     return (
-        <div className="landing-box">
+        <div className="landing-box pixel-box">
             <p>VIDEOGAMES</p>
             <p>By Evelyn Asmat</p>
             <Link to="/home">

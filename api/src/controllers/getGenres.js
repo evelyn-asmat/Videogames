@@ -6,11 +6,16 @@ const URL = `https://api.rawg.io/api/genres?key=${API_KEY}`;
 
 const getGenres = async (req, res) => {
     try {
-        let allGenres = await Genre.findAll();
+        let allGenres = await Genre.findAll({
+            order: [['name', 'ASC']]
+        });
         if (!allGenres.length){
             const { data } = await axios(URL);
             const genres = data.results.map(genre => ({ name: genre.name }));
             allGenres = await Genre.bulkCreate(genres);
+            allGenres = await Genre.findAll({
+                order: [['name', 'ASC']]
+            });
         }
         res.json(allGenres);
     } catch (error) {

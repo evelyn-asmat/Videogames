@@ -2,7 +2,7 @@ require('dotenv').config();
 const axios = require("axios");
 const { Videogame } = require('../db.js');
 const { Op } = require('sequelize');
-const { Genre } = require('../db.js');
+const { Genre, Platform } = require('../db.js');
 const { API_KEY } = process.env;
 let URL = `https://api.rawg.io/api/games?key=${API_KEY}`;
 
@@ -54,6 +54,16 @@ const getVideogames = async (req, res) => {
             rating: v.rating,
             genres: v.genres.map(g => ({ id: g.id, name: g.name })).sort(),
         }));
+
+        
+        Platform.count()
+        .then((count) => {
+            if (count === 0) {
+                    const platforms = new Set(videogamesApi.flatMap(game => game.platforms));
+                    const allPlatforms = [...platforms].map(platformName => ({ name: platformName }));
+                    return Platform.bulkCreate(allPlatforms.sort((a, b) =>  a.name.toLowerCase().localeCompare(b.name.toLowerCase())));
+                }
+            });
         
         const allVideogames = [...videogamesDb, ...videogamesApi];
         allVideogames.forEach(game => {

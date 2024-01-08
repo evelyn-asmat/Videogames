@@ -1,16 +1,17 @@
 .navbar {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 3rem;
+    margin-bottom: 2rem;
     width: 100%;
+    font-size: 0.9em;
 
     input {
-        height: 10px;
+        height: 20px;
     }
     .search-bar, .logo {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        column-gap: 12px;
+        column-gap: 25px;
     }
 }

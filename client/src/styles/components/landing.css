@@ -2,25 +2,31 @@
   display: flex;
   justify-content: center;
 }
+
 .landing-box {
-  background-color: var(--color-landing-pink);
+  background-color: var(--color-form-bg);
   color: white;
-  padding: 20px;
-  border: 4px dashed white;
-  animation: blink 1s infinite;
-  border-radius: 8px;
+  padding: 30px;
+  filter: drop-shadow(0px 0px 10px var(--color-highlight-text));
+
+  button {
+    animation: blink 1s infinite;
+    padding: 10px;
+    margin: 30px 0 20px 0;
+    filter: drop-shadow(0px 0px 10px var(--color-highlight-text));
+  }
 }
 
 @keyframes blink {
   0% {
-    border-color: white;
+    filter: drop-shadow(0px 0px 10px var(--color-highlight-text));
   }
 
   50% {
-    border-color: transparent;
+    filter: drop-shadow(0px 0px 10px transparent);
   }
 
   100% {
-    border-color: white;
+    filter: drop-shadow(0px 0px 10px var(--color-highlight-text));
   }
 }
