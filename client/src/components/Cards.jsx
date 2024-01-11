@@ -26,7 +26,11 @@ export default function Cards(props) {
                         )
                     })
                 ) : (
-                    <div>No videogames available</div>
+                    <div>
+                        <h2>Game</h2>
+                        <h2>Over</h2>
+                        <p>No videogames found.</p>
+                    </div>
                 )
                 }
             </div>
