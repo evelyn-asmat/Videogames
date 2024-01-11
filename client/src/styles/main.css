@@ -9,8 +9,8 @@
     --color-deeppink: deeppink;
     --color-pink: #ff2a6d;
     --color-highlight-text: white;
-    --color-label-1: #2c5ad9;
-    --color-label-2: #27a4d4;
+    --color-label-1: #27a4d4;
+    --color-label-2: #1840bd;
     --color-card: #1a1a1a;
     --color-text-card: white;
     --color-form-bg: #1a1a1a;
@@ -18,14 +18,16 @@
     --color-input: #fff;
     --color-input-border: #fff;
     --color-error: #d7153f;
-    
+
     --pixel-border: black;
     --pixel-border-2: white;
     --pixel-border-3: var(--pixel-border);
     --pixel: .15rem;
 
+    --card-size: calc(100vw / 5 - 3em);
+
     background-color: var(--color-bg);
-    background-image: url("tetris.jpg");
+    /* background-image: url("tetris.jpg"); */
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -66,7 +68,9 @@ body:has(.landing) {
     font-size: 1em;
 }
 
-h1, h2, h3 {
+h1,
+h2,
+h3 {
     font-family: 'Press Start 2P', sans-serif;
 }
 
@@ -81,11 +85,14 @@ button {
     color: white;
 }
 
-button:hover {
-    color: var(--color-label-2);
+button:hover,
+a:hover,
+.card:hover {
+    color: lime;
+    text-shadow: 0 0 20px lime;
 }
 
-img[alt]:after {  
+img[alt]:after {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -96,7 +103,7 @@ img[alt]:after {
     height: 100%;
     background: #ddd;
     border-radius: 5px;
-    content: "😵 " attr(alt);  
+    content: "😵 " attr(alt);
     font-family: 'VT323', monospace;
     color: #333;
     font-size: 0.7em;
@@ -105,4 +112,9 @@ img[alt]:after {
 a {
     color: inherit;
     text-decoration: none;
+}
+.content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }

@@ -7,6 +7,8 @@
     background-color: var(--color-form-bg);
     color: white;
     filter: drop-shadow(0px 0px 10px var(--color-highlight-text));
+    position: relative;
+    z-index: 5;
 
     select {
         overflow: hidden;

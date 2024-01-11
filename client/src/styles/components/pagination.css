@@ -2,21 +2,22 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 20px;
     max-height: 60px;
-    margin-top: 20px;
-    background-color: rgba(0, 0, 0, 0.8);
+    margin: 10px;
+    background-color: rgba(0, 0, 0, 0.9);
     backdrop-filter: blur(2px);
+    z-index: 5;
+    width: 100%;
 
-    box-shadow:
-        8px 0 var(--color-form-bg),
-        -8px 0 var(--color-form-bg),
-        0 -8px var(--color-form-bg),
-        0 8px var(--color-form-bg),
-        2px 0 0 4px var(--color-form-bg),
-        -2px 0 0 4px var(--color-form-bg),
-        0 -2px 0 4px var(--color-form-bg),
-        0 2px 0 4px var(--color-form-bg),
+     box-shadow:
+        8px 0 rgba(0,0,0, 0.5),
+        -8px 0 rgba(0,0,0, 0.5),
+        0 -8px rgba(0,0,0, 0.5),
+        0 8px rgba(0,0,0, 0.5),
+        2px 0 0 4px rgba(0,0,0, 0.5),
+        -2px 0 0 4px rgba(0,0,0, 0.5),
+        0 -2px 0 4px rgba(0,0,0, 0.5),
+        0 2px 0 4px rgba(0,0,0, 0.5),
         10px 0 var(--color-input),
         -10px 0 var(--color-input),
         0 -10px var(--color-input),
@@ -44,33 +45,34 @@
     li:not(.active) button:hover, button:hover img{
         transform: scale(1.5);
     }
-}
-.pagination ul {
-    list-style: none;
-    display: flex;
-    padding: 0;
-    gap: 20px;
-}
 
-.pagination .active button{
-    background-color: var(--color-label-2);
-    box-shadow:
-        8px 0 var(--color-label-2),
-        -8px 0 var(--color-label-2),
-        0 -8px var(--color-label-2),
-        0 8px var(--color-label-2),
-        2px 0 0 4px var(--color-label-2),
-        -2px 0 0 4px var(--color-label-2),
-        0 -2px 0 4px var(--color-label-2),
-        0 2px 0 4px var(--color-label-2),
-        10px 0 var(--color-input),
-        -10px 0 var(--color-input),
-        0 -10px var(--color-input),
-        0 10px var(--color-input),
-        0 0 0 6px var(--color-input),
-        0 4px 0 4px var(--color-input),
-        0 -4px 0 4px var(--color-input),
-        4px 0 0 4px var(--color-input),
-        -4px 0 0 4px var(--color-input);
-    color: white;
+    ul {
+        list-style: none;
+        display: flex;
+        padding: 0;
+        gap: 20px;
+    }
+
+    .active button {
+        background-color: var(--color-label-1);
+        box-shadow:
+            8px 0 var(--color-label-1),
+            -8px 0 var(--color-label-1),
+            0 -8px var(--color-label-1),
+            0 8px var(--color-label-1),
+            2px 0 0 4px var(--color-label-1),
+            -2px 0 0 4px var(--color-label-1),
+            0 -2px 0 4px var(--color-label-1),
+            0 2px 0 4px var(--color-label-1),
+            10px 0 var(--color-input),
+            -10px 0 var(--color-input),
+            0 -10px var(--color-input),
+            0 10px var(--color-input),
+            0 0 0 6px var(--color-input),
+            0 4px 0 4px var(--color-input),
+            0 -4px 0 4px var(--color-input),
+            4px 0 0 4px var(--color-input),
+            -4px 0 0 4px var(--color-input);
+        color: white;
+    }
 }

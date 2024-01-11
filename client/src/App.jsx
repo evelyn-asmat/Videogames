@@ -1,53 +1,28 @@
 import './styles/elements/pixel.css'
+import './styles/elements/animation.css'
 
 import { Route, Routes, useLocation } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
-import { API_URL } from './utils/constants';
 import Cards from './components/Cards';
 import Detail from './components/Detail';
 import Error from './components/Error';
 import Form from './components/Form';
 import Landing from './components/Landing';
 import Nav from './components/Nav';
-import axios from 'axios';
+import { fetchVideogames } from './redux/actions';
+import { useEffect } from 'react';
 
 function App() {
   const location = useLocation();
+  const dispatch = useDispatch();
 
-  const [videogames, setVideogames] = useState([]);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(0);
+  const videogames = useSelector(state => state.videogames);
+  const filters = useSelector(state => state.filters);
 
-  const onSearch = async (name) => {
-    if ( !name ){
-      return getVideogames();
-    }
-    try {
-      const response = await axios(`${API_URL}/videogames?name=${name}`);
-      setVideogames(response.data);
-      setTotalPages(Math.ceil(response.headers['total-videogames'] / 15));
-    } catch (error) {
-      alert(error.message);
-    }
-  }
-
-  const getVideogames = async () => {
-    try {
-      const response = await axios(`${API_URL}/videogames?page=${currentPage}&limit=15`);
-      setVideogames(response.data);
-      setTotalPages(Math.ceil(response.headers['total-videogames'] / 15));
-    } catch (error) {
-      alert(error.message);
-    }
-  }
   useEffect(() => {
-    getVideogames();
-  }, [currentPage]);
-
-  const handlePageChange = (page) => {
-    setCurrentPage(page);
-  };
+    dispatch(fetchVideogames(filters, 1));
+  }, []);
 
   return (
     <div className=
@@ -59,17 +34,22 @@ function App() {
     >
       {
         (location.pathname !== "/")
-          ? <Nav onSearch={onSearch} />
+          ? <Nav />
           : null
       }
 
       <Routes>
         <Route path="/" element={<Landing />} />
-        <Route path="/home" element={<Cards videogames={videogames} currentPage={currentPage} totalPages={totalPages} onPageChange={handlePageChange}/>} />
+        <Route path="/home" element={<Cards videogames={videogames} />} />
         <Route path="/detail/:id" element={<Detail />} />
         <Route path="/form" element={<Form />} />
         <Route path="*" element={<Error />} />
       </Routes>
+      <div className='noise'></div>
+      <div className="animation-wrapper">
+        <div className="particle particle-2"></div>
+        <div className="particle particle-4"></div>
+      </div>
     </div>
   )
 }

@@ -4,7 +4,7 @@ const { Videogame } = require('../db.js');
 const { Op } = require('sequelize');
 const { Genre, Platform } = require('../db.js');
 const { API_KEY } = process.env;
-let URL = `https://api.rawg.io/api/games?key=${API_KEY}`;
+const API_URL = `https://api.rawg.io/api/games?key=${API_KEY}&page_size=40`;
 
 const getVideogames = async (req, res) => {
     const page = parseInt(req.query.page) || 1;
@@ -12,7 +12,7 @@ const getVideogames = async (req, res) => {
     const { name } = req.query;
     try {
         let videogamesDb;
-        if (name) {
+        if (name && name !== "") {
             videogamesDb = await Videogame.findAll({
                 include: {
                     model: Genre,
@@ -27,10 +27,8 @@ const getVideogames = async (req, res) => {
                 },
                 order: [
                     [{ model: Genre, as: 'genres' }, 'name', 'ASC']
-                ],
-                limit: 15
+                ]
             });
-            URL = `${URL}&search=${name}&page_size=15`;
         } else {
             videogamesDb = await Videogame.findAll({
                 include: {
@@ -42,19 +40,17 @@ const getVideogames = async (req, res) => {
                 },
                 attributes: { exclude: ['description'] }
             });
-            URL = `${URL}&page_size=100`;
         }
-        const { data } = await axios(URL);
-        const videogamesApi = data.results.map(v => ({ 
+        const { data } = await axios(`${API_URL}&search=${name}`);
+        const videogamesApi = data.results && data.results.map(v => ({ 
             id: v.id,
             name: v.name,
-            platforms: v.platforms.map(p => p.platform.name),
+            platforms: v.platform && v.platforms.map(p => p.platform.name),
             image: v.background_image,
             released: v.released,
             rating: v.rating,
-            genres: v.genres.map(g => ({ id: g.id, name: g.name })).sort(),
+            genres: v.genres && v.genres.map(g => ({ id: g.id, name: g.name })).sort(),
         }));
-
         
         Platform.count()
         .then((count) => {
@@ -74,7 +70,7 @@ const getVideogames = async (req, res) => {
 
         const startIndex = (page - 1) * limit;
         if (name) {
-            res.header('total-videogames', 15);
+            res.header('total-videogames', allVideogames.length > 15 ? limit : allVideogames.length);
             return res.json(allVideogames.slice(0,limit));
         } else {
             res.header('total-videogames', allVideogames.length);

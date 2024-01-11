@@ -9,7 +9,7 @@ export default function Nav(props) {
             <NavLink to="/home" className="logo">
                 <img src="/videogame.svg" alt="Videogame Logo" height="30px"/> VIDEOGAMES
             </NavLink>
-            <SearchBar onSearch={props.onSearch} />
+            <SearchBar />
             <NavLink to="/form">
                 <button>New</button>
             </NavLink>

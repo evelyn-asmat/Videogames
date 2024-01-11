@@ -1,6 +1,6 @@
 .cards-container {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
 }
 .cards {
     display: flex;
@@ -11,13 +11,14 @@
 
 .card {
     min-height: 20px;
-    width: 220px;
     margin: 2rem 1rem;
+    width: var(--card-size);
     background: var(--color-card);
     backdrop-filter: blur(7px);
     -webkit-backdrop-filter: blur(7px);
     overflow: hidden;
     color: var(--color-text-card);
+    z-index: 5;
 
     hr {
         width: 100%;
@@ -34,6 +35,7 @@
         display: flex;
         flex-direction: column;
         padding: 0.3rem 1rem;
+        width: calc(var(--card-size) - 2rem);
 
         h1 {
             font-size: 1em;
@@ -44,10 +46,10 @@
 
         .card-image {
             border-radius: 0.5rem;
-            max-width: 100%;
             min-width: 100%;
-            height: 180px;
-            min-height: 180px;
+            width: 100%;
+            height: calc(var(--card-size) - 30px);
+            min-height: calc(var(--card-size) - 30px);
             object-fit: cover;
 
             border: 2px solid #fff;
