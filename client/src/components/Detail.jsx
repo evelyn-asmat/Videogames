@@ -3,26 +3,26 @@ import '../styles/components/detail.css'
 import { useEffect, useState } from "react";
 
 import { API_URL } from '../utils/constants';
+import Loading from './Loading';
 import axios from "axios";
 import { useParams } from "react-router-dom";
 
 export default function Detail(props) {
-   const {id} = useParams();
-   const [videogame, setVideogame] = useState({});
+    const { id } = useParams();
+    const [videogame, setVideogame] = useState({});
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
         axios(`${API_URL}/videogames/${id}`).then(
-        ({ data }) => {
-            if (data.name) {
-                setVideogame(data);
-            } else {
-                window.alert('No hay personajes con ese ID');
+            ({ data }) => {
+                if (data.name) {
+                    setVideogame(data);
+                } else {
+                    window.alert('No videogames found');
+                }
+                setIsLoading(false);
             }
-            document.getElementById('spinner').style.display = 'none';
-            document.getElementById('detail-data').style.display = 'flex';
-        }
-        ); 
-        return setVideogame({});
+        );
     }, [id]);
 
     return (
@@ -30,9 +30,7 @@ export default function Detail(props) {
             <h1>{videogame.name}</h1>
             <p>{videogame.released}</p>
             <p>{videogame.rating}</p>
-            <div id="spinner" className="fa-3x">
-                Cargando...
-            </div>
+            <Loading isLoading={isLoading}></Loading>
             <div id="detail-data">
                 <div id="wrap-image">
                     <img src={videogame.image} alt={videogame.name} />

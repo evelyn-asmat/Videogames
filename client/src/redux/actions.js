@@ -15,7 +15,7 @@ export const fetchVideogames = (filters, page) => {
             dispatch({
                 type: SET_PAGINATION,
                 payload: {
-                    current: page,
+                    current: page || 1,
                     total: Math.ceil(response.headers['total-videogames'] / 15)
                 },
             });

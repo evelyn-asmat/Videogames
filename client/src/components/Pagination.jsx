@@ -36,10 +36,10 @@ export default function Pagination() {
     return pageNumbers;
   };
   return (
-    <div className="pagination">
+    <>
       {  pagination.total > 1
       ? (
-        <>
+        <div className="pagination">
           <button onClick={() => handlePreviousPage(pagination.current)} disabled={pagination.current === 1}>
           <img src="https://img.icons8.com/external-others-inmotus-design/18/external-Left-8-bits-others-inmotus-design.png" alt="Previous"/>
           </button>
@@ -49,9 +49,9 @@ export default function Pagination() {
           <button onClick={() => handleNextPage(pagination.current)} disabled={pagination.current === pagination.total}>
             <img src="https://img.icons8.com/external-others-inmotus-design/18/external-Right-8-bits-others-inmotus-design.png" alt="Next"/>
           </button>
-        </>
+        </div>
       ) : ""
       }
-    </div>
+    </>
   );
 };

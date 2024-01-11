@@ -118,3 +118,7 @@ a {
     flex-direction: column;
     justify-content: center;
 }
+
+.hidden {
+    display: none !important;
+}

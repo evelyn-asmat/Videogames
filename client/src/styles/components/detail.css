@@ -1,4 +1,4 @@
-.pixel {
+/* .pixel {
     font-size: 14px;
     height: auto;
     margin: 1px 6px;
@@ -61,7 +61,16 @@
         color: #ffffff;
         background: var(--color-label-2);
     }
+} */
+#root :has(.detail) {
+    min-height: calc(100vh - 2rem);
 }
+
+.detail {
+    display: flex;
+    justify-content: center;
+}
+
 #detail-data {
     display: flex;
     align-items: center;
