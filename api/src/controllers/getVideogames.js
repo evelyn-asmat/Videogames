@@ -9,7 +9,8 @@ const API_URL = `https://api.rawg.io/api/games?key=${API_KEY}&page_size=40`;
 const getVideogames = async (req, res) => {
     const page = parseInt(req.query.page) || 1;
     const limit = parseInt(req.query.limit) || 15;
-    const { name } = req.query;
+    const { name, order, genre, origin } = req.query;
+
     try {
         let videogamesDb;
         if (name && name !== "") {

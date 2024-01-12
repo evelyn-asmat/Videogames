@@ -37,19 +37,13 @@ export default function Filters(props) {
     return (
         <aside className="filters">
             <div className="form-group">
-                <label htmlFor="orderName">Sort by name: </label>
-                <select name="orderName" id="orderName" className="pixel-input" onChange={handleFilterChange} value={filters.orderName} onBlur={applyFilters}>
+                <label htmlFor="order">Sort by: </label>
+                <select name="order" id="order" className="pixel-input" onChange={handleFilterChange} value={filters.order} onBlur={applyFilters}>
                     <option value="">-----</option>
-                    <option value="asc">A to Z</option>
-                    <option value="desc">Z to A</option>
-                </select>
-            </div>
-            <div className="form-group">
-                <label htmlFor="orderRating">Sort by rating: </label>
-                <select name="orderRating" id="orderRating" className="pixel-input" onChange={handleFilterChange} value={filters.orderRating} onBlur={applyFilters}>
-                    <option value="">-----</option>
-                    <option value="desc">Best rating</option>
-                    <option value="asc">Worst rating</option>
+                    <option value="name-ASC">Name (A to Z)</option>
+                    <option value="name-DESC">Name (Z to A)</option>
+                    <option value="rating-DESC">Best rating first</option>
+                    <option value="rating-ASC">Worst rating first</option>
                 </select>
             </div>
             <div className="form-group">
@@ -70,8 +64,8 @@ export default function Filters(props) {
                 <label htmlFor="origin">Origin: </label>
                 <select name="origin" id="origin" className="pixel-input" onChange={handleFilterChange} value={filters.orderOrigin} onBlur={applyFilters}>
                     <option value="">All</option>
-                    <option value="db">Database</option>
-                    <option value="api">API</option>
+                    <option value="DB">Database</option>
+                    <option value="API">API</option>
                 </select>
             </div>
         </aside>

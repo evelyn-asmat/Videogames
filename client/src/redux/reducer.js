@@ -2,8 +2,7 @@ import { FETCH_VIDEOGAMES, SET_CURRENT_PAGE, SET_FILTERS, SET_NEXT_PAGE, SET_PAG
 
 const initialState = {
     filters: {
-        orderName: '',
-        orderRating: '',
+        order: '',
         genre: '',
         origin: '',
         name: '',
