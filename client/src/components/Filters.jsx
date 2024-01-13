@@ -27,6 +27,22 @@ export default function Filters(props) {
         dispatch(fetchVideogames({...filters, [event.target.name]: event.target.value}));
     };
 
+    const handleClearFilters = (event) => {
+        event.preventDefault();
+        dispatch(setFilters({
+            ...filters,
+            order: "",
+            genre: "",
+            origin: ""
+        }));
+        dispatch(fetchVideogames({
+            ...filters,
+            order: "",
+            genre: "",
+            origin: ""
+        }));
+    }
+
     useEffect(() => {
         getGenres();
     }, []);
@@ -64,6 +80,9 @@ export default function Filters(props) {
                     <option value="DB">Database</option>
                     <option value="API">API</option>
                 </select>
+            </div>
+            <div className="form-group btn">
+                <button onClick={handleClearFilters}>Clear filters</button>
             </div>
         </div>
     );

@@ -43,5 +43,9 @@
         select {
             width: 50%;
         }
+
+        &.btn {
+            justify-content: center;
+        }
     }
 }
