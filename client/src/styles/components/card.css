@@ -6,7 +6,12 @@
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: space-between;
+    width: 100%;
+
+    &:has(.game-over){
+        justify-content: center;
+    }
 }
 
 .card {

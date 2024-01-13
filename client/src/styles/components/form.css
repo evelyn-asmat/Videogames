@@ -4,6 +4,7 @@
     width: 50%;
     padding: 0.4em 1.3em;
     margin-top: 4rem;
+    margin-bottom: 4rem;
     background-color: var(--color-form-bg);
     color: white;
     filter: drop-shadow(0px 0px 10px var(--color-highlight-text));

@@ -24,21 +24,18 @@ export default function Filters(props) {
 
     const handleFilterChange = (event) => {
         dispatch(setFilters({...filters, [event.target.name]: event.target.value}));
+        dispatch(fetchVideogames({...filters, [event.target.name]: event.target.value}));
     };
-
-    const applyFilters = () => {
-        dispatch(fetchVideogames(filters));
-    }
 
     useEffect(() => {
         getGenres();
     }, []);
 
     return (
-        <aside className="filters">
+        <div className="filters">
             <div className="form-group">
                 <label htmlFor="order">Sort by: </label>
-                <select name="order" id="order" className="pixel-input" onChange={handleFilterChange} value={filters.order} onBlur={applyFilters}>
+                <select name="order" id="order" className="pixel-input" onChange={handleFilterChange} value={filters.order}>
                     <option value="">-----</option>
                     <option value="name-ASC">Name (A to Z)</option>
                     <option value="name-DESC">Name (Z to A)</option>
@@ -48,7 +45,7 @@ export default function Filters(props) {
             </div>
             <div className="form-group">
                 <label htmlFor="genre">Genre: </label>
-                <select name="genre" id="genre" className="pixel-input" onChange={handleFilterChange} value={filters.orderGenre} onBlur={applyFilters}>
+                <select name="genre" id="genre" className="pixel-input" onChange={handleFilterChange} value={filters.orderGenre}>
                     <option value="">All</option>
                     {genres && genres.length > 0 ? (
                         genres.map((genre) => {
@@ -62,12 +59,12 @@ export default function Filters(props) {
             </div>
             <div className="form-group">
                 <label htmlFor="origin">Origin: </label>
-                <select name="origin" id="origin" className="pixel-input" onChange={handleFilterChange} value={filters.orderOrigin} onBlur={applyFilters}>
+                <select name="origin" id="origin" className="pixel-input" onChange={handleFilterChange} value={filters.orderOrigin}>
                     <option value="">All</option>
                     <option value="DB">Database</option>
                     <option value="API">API</option>
                 </select>
             </div>
-        </aside>
+        </div>
     );
 }
