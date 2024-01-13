@@ -4,6 +4,7 @@ const { API_KEY } = process.env;
 const axios = require("axios");
 const { Op } = require('sequelize');
 const { Genre, Videogame } = require('../db.js');
+const { saveIfNoPlatforms } = require('./platformsController.js');
 
 const API_URL = `https://api.rawg.io/api/games`;
 const GAMES_URL = `${API_URL}?key=${API_KEY}&page_size=40`;
@@ -36,7 +37,7 @@ const getDetailDB = async (idVideogame) => {
     });
 }
 
-const getVideogamesAPI = async (name, order, genre) => {
+const getVideogamesAPI = async (name) => {
     const { data } = await axios(`${GAMES_URL}&search=${name}`);
     const videogamesApi = data.results && data.results.map(v => ({
         id: v.id,
@@ -57,7 +58,7 @@ const getVideogamesAPI = async (name, order, genre) => {
     return videogamesApi;
 }
 
-const getVideogamesDB = async (name, order, genre) => {
+const getVideogamesDB = async (name) => {
     let videogamesDb;
     if (name && name !== "") {
         videogamesDb = await Videogame.findAll({
@@ -101,6 +102,15 @@ const getVideogamesDB = async (name, order, genre) => {
     return videogamesDb;
 }
 
+const getVideogamesAll = async (name) => {
+    const videogamesDB = await getVideogamesDB(name);
+    const videogamesAPI = await getVideogamesAPI(name);
+
+    await saveIfNoPlatforms(videogamesAPI);
+
+    return [...videogamesDB, ...videogamesAPI];
+}
+
 const saveVideogame = async (name, description, image, platforms, released, rating, genres) => {
     const videogame = await Videogame.create({
         name,
@@ -120,10 +130,29 @@ const saveVideogame = async (name, description, image, platforms, released, rati
     return { ...videogame.dataValues, genres: videogameGenres ? videogameGenres.map(v => (v.name)) : videogameGenres }
 }
 
+const sortVideogamesByName = (videogames, sortingOrder) => {
+    if (sortingOrder == "ASC"){
+        videogames.sort((a, b) => a.name.toLowerCase().localeCompare(b.name.toLowerCase()));
+    } else {
+        videogames.sort((a, b) => b.name.toLowerCase().localeCompare(a.name.toLowerCase()));
+    }
+}
+
+const sortVideogamesByRating = (videogames, sortingOrder) => {
+    if (sortingOrder == "ASC"){
+        videogames.sort((a, b) => a.rating - b.rating);
+    } else {
+        videogames.sort((a, b) => b.rating - a.rating);
+    }
+}
+
 module.exports = {
     getDetailAPI,
     getDetailDB,
     getVideogamesAPI,
     getVideogamesDB,
-    saveVideogame
+    getVideogamesAll,
+    saveVideogame,
+    sortVideogamesByName,
+    sortVideogamesByRating
 }

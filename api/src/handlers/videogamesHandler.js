@@ -1,7 +1,6 @@
 require('dotenv').config();
 
-const { saveVideogame, getDetailAPI, getDetailDB, getVideogamesDB, getVideogamesAPI } = require('../controllers/videogamesController.js');
-const { saveIfNoPlatforms } = require('../controllers/platformsController.js');
+const { saveVideogame, getDetailAPI, getDetailDB, getVideogamesDB, getVideogamesAPI, getVideogamesAll, sortVideogamesByName, sortVideogamesByRating } = require('../controllers/videogamesController.js');
 
 const getVideogamesHandler = async (req, res) => {
     const page = parseInt(req.query.page) || 1;
@@ -12,15 +11,21 @@ const getVideogamesHandler = async (req, res) => {
         let videogamesResponse;
 
         if (origin === "DB") {
-            videogamesResponse = await getVideogamesDB(name, order, genre);
+            videogamesResponse = await getVideogamesDB(name);
         } else if (origin === "API") {
-            videogamesResponse = await getVideogamesAPI(name, order, genre);
+            videogamesResponse = await getVideogamesAPI(name);
         } else {
-            const videogamesDB = await getVideogamesDB(name, order, genre);
-            const videogamesAPI = await getVideogamesAPI(name, order, genre);
-            videogamesResponse = [...videogamesDB, ...videogamesAPI];
+            videogamesResponse = await getVideogamesAll(name);
+        }
 
-            await saveIfNoPlatforms(videogamesAPI);
+        if (order && order !== "") {
+            const [field, sortingOrder] = order.split("-");
+
+            if (field === "name") {
+                await sortVideogamesByName(videogamesResponse, sortingOrder);
+            } else if (field === "rating") {
+                await sortVideogamesByRating(videogamesResponse, sortingOrder);
+            }
         }
 
         const startIndex = (page - 1) * limit;
