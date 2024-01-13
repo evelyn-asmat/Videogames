@@ -45,12 +45,12 @@ export default function Filters(props) {
             </div>
             <div className="form-group">
                 <label htmlFor="genre">Genre: </label>
-                <select name="genre" id="genre" className="pixel-input" onChange={handleFilterChange} value={filters.orderGenre}>
+                <select name="genre" id="genre" className="pixel-input" onChange={handleFilterChange} value={filters.genre}>
                     <option value="">All</option>
                     {genres && genres.length > 0 ? (
                         genres.map((genre) => {
                             return (
-                                <option value={genre.id} key={genre.id}>{genre.name}</option>
+                                <option value={genre.name} key={genre.id}>{genre.name}</option>
                             )
                         })
                     ) : ""
@@ -59,7 +59,7 @@ export default function Filters(props) {
             </div>
             <div className="form-group">
                 <label htmlFor="origin">Origin: </label>
-                <select name="origin" id="origin" className="pixel-input" onChange={handleFilterChange} value={filters.orderOrigin}>
+                <select name="origin" id="origin" className="pixel-input" onChange={handleFilterChange} value={filters.origin}>
                     <option value="">All</option>
                     <option value="DB">Database</option>
                     <option value="API">API</option>

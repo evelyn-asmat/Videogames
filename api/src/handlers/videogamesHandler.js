@@ -1,6 +1,6 @@
 require('dotenv').config();
 
-const { saveVideogame, getDetailAPI, getDetailDB, getVideogamesDB, getVideogamesAPI, getVideogamesAll, sortVideogamesByName, sortVideogamesByRating } = require('../controllers/videogamesController.js');
+const { saveVideogame, getDetailAPI, getDetailDB, getVideogamesDB, getVideogamesAPI, getVideogamesAll, sortVideogamesByName, sortVideogamesByRating, filterVideogamesByGenre } = require('../controllers/videogamesController.js');
 
 const getVideogamesHandler = async (req, res) => {
     const page = parseInt(req.query.page) || 1;
@@ -18,7 +18,11 @@ const getVideogamesHandler = async (req, res) => {
             videogamesResponse = await getVideogamesAll(name);
         }
 
-        if (order && order !== "") {
+        if (genre) {
+            videogamesResponse = await filterVideogamesByGenre(videogamesResponse, genre);
+        }
+
+        if (order) {
             const [field, sortingOrder] = order.split("-");
 
             if (field === "name") {

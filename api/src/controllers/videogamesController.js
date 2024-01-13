@@ -130,6 +130,14 @@ const saveVideogame = async (name, description, image, platforms, released, rati
     return { ...videogame.dataValues, genres: videogameGenres ? videogameGenres.map(v => (v.name)) : videogameGenres }
 }
 
+const filterVideogamesByGenre = (videogames, genreFilter) => {
+    return videogames.filter(
+        game => game.genres.some(
+            genre => genre.name.toUpperCase() === genreFilter.toUpperCase()
+        )
+    );
+}
+
 const sortVideogamesByName = (videogames, sortingOrder) => {
     if (sortingOrder == "ASC"){
         videogames.sort((a, b) => a.name.toLowerCase().localeCompare(b.name.toLowerCase()));
@@ -153,6 +161,7 @@ module.exports = {
     getVideogamesDB,
     getVideogamesAll,
     saveVideogame,
+    filterVideogamesByGenre,
     sortVideogamesByName,
     sortVideogamesByRating
 }
