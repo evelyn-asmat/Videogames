@@ -48,12 +48,12 @@ const getDetailVideogameHandler = async (req, res) => {
     }
     try {
         let response;
-        if (Number.isInteger(Number(idVideogame))) {
-            // Get detail from API
-            response = await getDetailAPI();
-        } else {
+        if (isNaN(idVideogame)) {
             // Get detail from DB
-            response = await getDetailDB();
+            response = await getDetailDB(idVideogame);
+        } else {
+            // Get detail from API
+            response = await getDetailAPI(idVideogame);
         }
         if (response) {
             return res.json(response);
