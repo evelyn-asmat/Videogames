@@ -7,7 +7,7 @@ export default function Nav(props) {
     return (
         <div className="navbar">
             <NavLink to="/home" className="logo">
-                <img src="/videogame.svg" alt="Videogame Logo" height="30px"/> VIDEOGAMES
+                <img src="/videogame.svg" alt="Videogame Logo" height="30px" /> VIDEOGAMES
             </NavLink>
             <SearchBar />
             <NavLink to="/form">

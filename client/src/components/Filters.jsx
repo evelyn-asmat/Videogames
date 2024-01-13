@@ -23,8 +23,8 @@ export default function Filters(props) {
     }
 
     const handleFilterChange = (event) => {
-        dispatch(setFilters({...filters, [event.target.name]: event.target.value}));
-        dispatch(fetchVideogames({...filters, [event.target.name]: event.target.value}));
+        dispatch(setFilters({ ...filters, [event.target.name]: event.target.value }));
+        dispatch(fetchVideogames({ ...filters, [event.target.name]: event.target.value }));
     };
 
     const handleClearFilters = (event) => {

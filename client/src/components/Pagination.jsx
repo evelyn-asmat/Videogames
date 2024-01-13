@@ -22,14 +22,14 @@ export default function Pagination() {
     dispatch(setPreviousPage(page));
     dispatch(fetchVideogames(filters, page));
   }
-  
+
   const renderPageNumbers = () => {
     const pageNumbers = [];
 
     for (let i = 1; i <= pagination.total; i++) {
       pageNumbers.push(
-        <li key={ i } className={ pagination.current === i ? 'active' : '' }>
-          <button onClick={() => handleChangePage(i)}>{ i }</button>
+        <li key={i} className={pagination.current === i ? 'active' : ''}>
+          <button onClick={() => handleChangePage(i)}>{i}</button>
         </li>
       );
     }
@@ -37,20 +37,20 @@ export default function Pagination() {
   };
   return (
     <>
-      {  pagination.total > 1
-      ? (
-        <div className="pagination">
-          <button onClick={() => handlePreviousPage(pagination.current)} disabled={pagination.current === 1}>
-          <img src="https://img.icons8.com/external-others-inmotus-design/18/external-Left-8-bits-others-inmotus-design.png" alt="Previous"/>
-          </button>
-          <ul>
-            {renderPageNumbers()}
-          </ul>
-          <button onClick={() => handleNextPage(pagination.current)} disabled={pagination.current === pagination.total}>
-            <img src="https://img.icons8.com/external-others-inmotus-design/18/external-Right-8-bits-others-inmotus-design.png" alt="Next"/>
-          </button>
-        </div>
-      ) : ""
+      {pagination.total > 1
+        ? (
+          <div className="pagination">
+            <button onClick={() => handlePreviousPage(pagination.current)} disabled={pagination.current === 1}>
+              <img src="https://img.icons8.com/external-others-inmotus-design/18/external-Left-8-bits-others-inmotus-design.png" alt="Previous" />
+            </button>
+            <ul>
+              {renderPageNumbers()}
+            </ul>
+            <button onClick={() => handleNextPage(pagination.current)} disabled={pagination.current === pagination.total}>
+              <img src="https://img.icons8.com/external-others-inmotus-design/18/external-Right-8-bits-others-inmotus-design.png" alt="Next" />
+            </button>
+          </div>
+        ) : ""
       }
     </>
   );

@@ -6,5 +6,4 @@ export default function Error() {
             <h2 className="game-over">GAME<br />OVER</h2>
         </div>
     );
- }
- 
+}

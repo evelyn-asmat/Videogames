@@ -7,7 +7,7 @@ export default function Card(props) {
         <div className="card pixel-border">
             <div className='main'>
                 <Link to={`/detail/${props.id}`}>
-                    <img className='card-image' src={props.image} alt={props.name}/>
+                    <img className='card-image' src={props.image} alt={props.name} />
                 </Link>
                 <Link to={`/detail/${props.id}`}>
                     <h1>{props.name}</h1>
