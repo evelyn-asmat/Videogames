@@ -4,6 +4,7 @@ import './styles/elements/animation.css'
 import { Route, Routes, useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
+import Alert from './components/Alert';
 import Cards from './components/Cards';
 import Detail from './components/Detail';
 import Error from './components/Error';
@@ -50,6 +51,7 @@ function App() {
         <div className="particle particle-2"></div>
         <div className="particle particle-4"></div>
       </div>
+      <Alert></Alert>
     </div>
   )
 }

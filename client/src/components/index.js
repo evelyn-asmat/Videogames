@@ -1,3 +1,4 @@
+import Alert from "./Alert";
 import Cards from "./Cards";
 import Error from "./Error";
 import Filters from "./Filters";
@@ -8,6 +9,7 @@ import Pagination from "./Pagination";
 import SearchBar from "./SearchBar";
 
 export {
+    Alert,
     Cards,
     Error,
     Filters,

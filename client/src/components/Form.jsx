@@ -1,5 +1,7 @@
 import '../styles/components/form.css'
 
+import { fetchVideogames, showAlert } from '../redux/actions';
+import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from "react";
 
 import { API_URL } from '../utils/constants';
@@ -9,7 +11,9 @@ import { useNavigate } from "react-router-dom";
 import validation from "../utils/validation";
 
 export default function Form(props) {
+    const dispatch = useDispatch();
     const navigate = useNavigate();
+    const filters = useSelector(state => state.filters);
     const [genres, setGenres] = useState([]);
     const [platforms, setPlaforms] = useState([]);
     const [videogameData, setVideogameData] = useState({
@@ -83,9 +87,16 @@ export default function Form(props) {
     const createVideogame = async () => {
         try {
             const { data } = await axios.post(`${API_URL}/videogames/`, videogameData);
-            data.id ? navigate('/home') : alert("Error.");
+            if (data.id) {
+                dispatch(fetchVideogames(filters, 1));
+                dispatch(showAlert("Videogame created."));
+                navigate('/home');
+            } else {
+                dispatch(showAlert("Oops, something has gone wrong."));
+            }
         } catch (error) {
-            alert(error.message);
+            console.error(error.message);
+            dispatch(showAlert("Oops, something has gone wrong."));
         }
     }
 

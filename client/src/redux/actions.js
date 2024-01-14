@@ -6,12 +6,13 @@ export const SET_PAGINATION = 'SET_PAGINATION';
 export const SET_NEXT_PAGE = 'SET_NEXT_PAGE';
 export const SET_PREVIOUS_PAGE = 'SET_PREVIOUS_PAGE';
 export const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
+export const TOGGLE_ALERT = 'TOGGLE_ALERT';
 
 
 export const fetchVideogames = (filters, page) => {
     return async (dispatch) => {
         try {
-            const response = await axios.get(`${API_URL}/videogames`, { params: {...filters, page: page || 1} });
+            const response = await axios.get(`${API_URL}/videogames`, { params: { ...filters, page: page || 1 } });
             dispatch({
                 type: SET_PAGINATION,
                 payload: {
@@ -48,4 +49,20 @@ export const setCurrentPage = (page) => ({
     type: SET_CURRENT_PAGE,
     payload: page
 });
+
+export const showAlert = (message) => ({
+    type: TOGGLE_ALERT,
+    payload: {
+        show: true,
+        message: message
+    }
+})
+
+export const hideAlert = () => ({
+    type: TOGGLE_ALERT,
+    payload: {
+        show: false,
+        message: ""
+    }
+})
 

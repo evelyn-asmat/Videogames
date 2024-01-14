@@ -1,4 +1,4 @@
-import { FETCH_VIDEOGAMES, SET_CURRENT_PAGE, SET_FILTERS, SET_NEXT_PAGE, SET_PAGINATION, SET_PREVIOUS_PAGE } from "./actions";
+import { FETCH_VIDEOGAMES, SET_CURRENT_PAGE, SET_FILTERS, SET_NEXT_PAGE, SET_PAGINATION, SET_PREVIOUS_PAGE, TOGGLE_ALERT } from "./actions";
 
 const initialState = {
     filters: {
@@ -11,6 +11,10 @@ const initialState = {
     pagination: {
         current: 1,
         total: 0
+    },
+    alert: {
+        show: false,
+        message: ""
     }
 }
 
@@ -39,6 +43,11 @@ export const reducer = (state = initialState, { type, payload }) => {
                     current: payload
                 }
             };
+        case TOGGLE_ALERT:
+            return {
+                ...state,
+                alert: payload
+            }
         default:
             return state;
     }
