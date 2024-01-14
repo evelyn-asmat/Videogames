@@ -29,7 +29,6 @@
 
 
     background-color: var(--color-bg);
-    /* background-image: url("tetris.jpg"); */
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -146,6 +145,10 @@ a {
 
 .game-over {
     line-height: 3rem;
+    animation: blink 1s infinite;
+}
+
+.blink {
     animation: blink 1s infinite;
 }
 

@@ -15,8 +15,17 @@
         overflow: hidden;
     }
 
+    textarea {
+        resize: vertical;
+    }
+
     button {
         margin: 30px 0;
+
+        &:disabled {
+            pointer-events: none;
+            filter: opacity(0.1);
+        }
     }
 }
 
@@ -40,11 +49,11 @@
     flex-direction: row;
     align-items: center;
     gap: 20px;
-    
+
     input {
         height: 22px;
     }
-    
+
     .image-preview {
         max-height: 100px;
         width: auto;

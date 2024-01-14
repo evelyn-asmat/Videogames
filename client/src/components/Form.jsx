@@ -21,15 +21,9 @@ export default function Form(props) {
         rating: "",
         genres: []
     })
-    const [errors, setErrors] = useState({
-        name: "",
-        description: "",
-        platforms: "",
-        image: "",
-        released: "",
-        rating: "",
-        genres: "",
-    })
+    const [errors, setErrors] = useState({})
+
+    const [disabledSubmit, setDisabledSubmit] = useState("disabled");
 
     const handleChange = async (event) => {
         if (event.target.name === "image") {
@@ -100,6 +94,14 @@ export default function Form(props) {
         getGenres();
     }, []);
 
+    useEffect(() => {
+        if (Object.keys(errors).length === 0 && Object.values(videogameData).every(value => value !== "")) {
+            setDisabledSubmit(false);
+        } else {
+            setDisabledSubmit("disabled");
+        }
+    }, [errors])
+
     return (
         <div className="form pixel-box">
             <form onSubmit={handleSubmit}>
@@ -151,6 +153,7 @@ export default function Form(props) {
                         <input
                             type="date"
                             max={maxDate()}
+                            min="1950-01-01"
                             id="released"
                             name="released"
                             className="pixel-input"
@@ -224,7 +227,7 @@ export default function Form(props) {
                     </div>
                 </div>
 
-                <button>Submit</button>
+                <button disabled={disabledSubmit}>Submit</button>
             </form>
         </div>
     );

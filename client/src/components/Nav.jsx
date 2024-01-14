@@ -12,7 +12,7 @@ export default function Nav(props) {
             <div className="navbar-group">
                 <SearchBar />
                 <NavLink to="/form">
-                    <button>New</button>
+                    <button>New Videogame</button>
                 </NavLink>
             </div>
             <NavLink to="/">
