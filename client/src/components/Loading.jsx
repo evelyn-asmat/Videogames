@@ -8,7 +8,7 @@ export default function Loading(props) {
                 <div className="pacman-bottom"></div>
                 <div className="feed"></div>
             </div>
-            <div className='loading-text'>... Loading</div>
+            <div className='loading-text'>Loading</div>
         </div>
     );
 }

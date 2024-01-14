@@ -9,9 +9,14 @@ export default function Nav(props) {
             <NavLink to="/home" className="logo">
                 <img src="/videogame.svg" alt="Videogame Logo" height="30px" /> VIDEOGAMES
             </NavLink>
-            <SearchBar />
-            <NavLink to="/form">
-                <button>New</button>
+            <div className="navbar-group">
+                <SearchBar />
+                <NavLink to="/form">
+                    <button>New</button>
+                </NavLink>
+            </div>
+            <NavLink to="/">
+                <button>Exit</button>
             </NavLink>
         </div>
     );

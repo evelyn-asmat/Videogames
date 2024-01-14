@@ -45,6 +45,20 @@ export default function Filters(props) {
 
     useEffect(() => {
         getGenres();
+        return () => {
+            dispatch(setFilters({
+                name: "",
+                order: "",
+                genre: "",
+                origin: ""
+            }));
+            dispatch(fetchVideogames({
+                name: "",
+                order: "",
+                genre: "",
+                origin: ""
+            }));
+        };
     }, []);
 
     return (

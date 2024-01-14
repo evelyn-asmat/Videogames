@@ -5,10 +5,18 @@
     width: 100%;
     font-size: 0.9em;
 
+    .navbar-group {
+        display: flex;
+        gap: 30px;
+        align-items: center;
+    }
+
     input {
         height: 20px;
     }
-    .search-bar, .logo {
+
+    .search-bar,
+    .logo {
         display: flex;
         justify-content: space-between;
         align-items: center;

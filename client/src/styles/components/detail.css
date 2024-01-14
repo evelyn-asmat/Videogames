@@ -1,82 +1,55 @@
-/* .pixel {
-    font-size: 14px;
-    height: auto;
-    margin: 1px 6px;
-    padding: 2px 4px;
-    font-family: 'VT323';
-
-    position: relative;
-    display: inline-block;
-    vertical-align: top;
-    text-transform: uppercase;
-
-    cursor: pointer;
-
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-
-    width: auto;
-    z-index: 2;
-
-    p {
-        margin: 0;
-    }
-
-    &:active {
-        top: 2px;
-    }
-
-    &::before {
-        content: "";
-        display: block;
-        position: absolute;
-        top: 5px;
-        bottom: 5px;
-        left: -5px;
-        right: -5px;
-        z-index: -1;
-    }
-
-    &::after {
-        content: "";
-        display: block;
-        position: absolute;
-        top: 2px;
-        bottom: 2px;
-        left: -3px;
-        right: -3px;
-        z-index: -1;
-    }
-
-    &, &::before, &::after {
-        color: #ffffff;
-        background: var(--color-label-1);
-    }
-    
-    &.label2, &.label2::before, &.label2::after {
-        color: #ffffff;
-        background: var(--color-label-2);
-    }
-} */
-#root :has(.detail) {
-    min-height: calc(100vh - 2rem);
-}
-
 .detail {
     display: flex;
     justify-content: center;
-}
+    flex-direction: column;
 
-#detail-data {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    .pixel-box {
+        width: 60%;
+        background-color: var(--color-bg-detail-box);
+        padding-bottom: 20px;
+        z-index: 5;
+        
+        h1 {
+            font-size: 1.5rem;
+        }
 
-    img {
-        width: 80%;        
+        hr {
+            width: 100%;
+            border: none;
+            border-bottom: 1px dotted var(--color-highlight-text);
+        }
+
+        .detail-row {
+            display: flex;
+            justify-content: space-around;
+
+            p {
+                display: flex;
+                align-items: center;
+
+                .icon {
+                    margin-right: 10px;
+                }
+            }
+
+            .detail-col {
+                display: flex;
+                width: 50%;
+                align-items: center;
+                justify-content: center;
+                flex-direction: column;
+
+                img {
+                    width: 90%;
+                    margin: 20px 0;
+                }
+            }            
+        }
+
+        .detail-description {
+            text-align: justify;
+            margin: 10px 20px;
+        }
     }
+
 }

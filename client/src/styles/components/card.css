@@ -25,13 +25,6 @@
     color: var(--color-text-card);
     z-index: 5;
 
-    hr {
-        width: 100%;
-        border: none;
-        border-bottom: 1px dotted var(--color-highlight-text);
-        margin-top: 0;
-    }
-
     ins {
         text-decoration: none;
     }

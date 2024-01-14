@@ -18,6 +18,7 @@
     --color-input: #fff;
     --color-input-border: #fff;
     --color-error: #d7153f;
+    --color-bg-detail-box: #1b1b1b;
 
     --pixel-border: black;
     --pixel-border-2: white;
@@ -25,6 +26,7 @@
     --pixel: .15rem;
 
     --card-size: calc(100vw / 5 - 3em);
+
 
     background-color: var(--color-bg);
     /* background-image: url("tetris.jpg"); */
@@ -47,6 +49,12 @@
     margin: 0 auto;
     padding: 1rem 2rem;
     text-align: center;
+
+    &:has(.landing) {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
 }
 
 body {
@@ -130,6 +138,10 @@ a {
     display: flex;
     flex-direction: column;
 
+}
+
+.app > div:has(.loading){
+    align-items: center;
 }
 
 .game-over {
