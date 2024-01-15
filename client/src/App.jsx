@@ -1,16 +1,10 @@
 import './styles/elements/pixel.css'
 import './styles/elements/animation.css'
 
+import { Alert, Cards, Detail, Error, Form, Landing, Nav } from './components';
 import { Route, Routes, useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
-import Alert from './components/Alert';
-import Cards from './components/Cards';
-import Detail from './components/Detail';
-import Error from './components/Error';
-import Form from './components/Form';
-import Landing from './components/Landing';
-import Nav from './components/Nav';
 import { fetchVideogames } from './redux/actions';
 import { useEffect } from 'react';
 

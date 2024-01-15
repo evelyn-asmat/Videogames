@@ -6,7 +6,7 @@
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: space-around;
     width: 100%;
 
     &:has(.game-over){

@@ -16,7 +16,7 @@ export default function Alert(props) {
     };
 
     useEffect(() => {
-      if (alert.show) handleShowAlert();
+        if (alert.show) handleShowAlert();
     }, [alert]);
 
     return (

@@ -1,4 +1,4 @@
-import { fetchVideogames, setFilters } from '../redux/actions';
+import { fetchVideogames, setFilters, setLoadingCards } from '../redux/actions';
 import { useDispatch, useSelector } from "react-redux";
 
 import { useNavigate } from 'react-router-dom';
@@ -11,12 +11,14 @@ export default function SearchBar(props) {
     const handleChange = (event) => {
         dispatch(setFilters({ ...filters, "name": event.target.value }));
         if (!event.target.value) {
+            dispatch(setLoadingCards(true));
             dispatch(fetchVideogames({ ...filters, "name": event.target.value }));
         }
     };
 
     const handleKeyDown = (event) => {
         if (event.key === 'Enter') {
+            dispatch(setLoadingCards(true));
             dispatch(fetchVideogames(filters));
             navigate("/home");
         } else if (event.key === 'Esc') {
@@ -26,6 +28,7 @@ export default function SearchBar(props) {
 
     const handleClick = (event) => {
         event.preventDefault();
+        dispatch(setLoadingCards(true));
         dispatch(fetchVideogames(filters));
         navigate("/home");
     }

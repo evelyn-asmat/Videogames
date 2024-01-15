@@ -1,4 +1,4 @@
-import { FETCH_VIDEOGAMES, SET_CURRENT_PAGE, SET_FILTERS, SET_NEXT_PAGE, SET_PAGINATION, SET_PREVIOUS_PAGE, TOGGLE_ALERT } from "./actions";
+import { FETCH_VIDEOGAMES, SET_CURRENT_PAGE, SET_FILTERS, SET_LOADING_CARDS, SET_NEXT_PAGE, SET_PAGINATION, SET_PREVIOUS_PAGE, TOGGLE_ALERT } from "./actions";
 
 const initialState = {
     filters: {
@@ -15,7 +15,8 @@ const initialState = {
     alert: {
         show: false,
         message: ""
-    }
+    },
+    isLoadingCards: true
 }
 
 export const reducer = (state = initialState, { type, payload }) => {
@@ -35,7 +36,23 @@ export const reducer = (state = initialState, { type, payload }) => {
                 ...state,
                 pagination: payload,
             };
-        case SET_NEXT_PAGE, SET_PREVIOUS_PAGE, SET_CURRENT_PAGE:
+        case SET_NEXT_PAGE:
+            return {
+                ...state,
+                pagination: {
+                    ...state.pagination,
+                    current: state.pagination.current + 1
+                }
+            };
+        case SET_PREVIOUS_PAGE:
+            return {
+                ...state,
+                pagination: {
+                    ...state.pagination,
+                    current: state.pagination.current - 1
+                }
+            };
+        case SET_CURRENT_PAGE:
             return {
                 ...state,
                 pagination: {
@@ -47,6 +64,11 @@ export const reducer = (state = initialState, { type, payload }) => {
             return {
                 ...state,
                 alert: payload
+            };
+        case SET_LOADING_CARDS:
+            return {
+                ...state,
+                isLoadingCards: payload
             }
         default:
             return state;

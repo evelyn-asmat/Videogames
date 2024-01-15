@@ -19,6 +19,15 @@
             border-bottom: 1px dotted var(--color-highlight-text);
         }
 
+        button {
+            margin-top: 30px;
+        }
+
+        small {
+            margin: 20px 0;
+            color: lime;
+        }
+
         .detail-row {
             display: flex;
             justify-content: space-around;

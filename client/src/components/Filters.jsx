@@ -1,6 +1,6 @@
 import '../styles/components/filters.css'
 
-import { fetchVideogames, setFilters } from '../redux/actions';
+import { fetchVideogames, setFilters, setLoadingCards, showAlert } from '../redux/actions';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 
@@ -10,25 +10,29 @@ import axios from 'axios';
 export default function Filters(props) {
     const dispatch = useDispatch();
     const filters = useSelector(state => state.filters);
+    const isLoadingCards = useSelector(state => state.isLoadingCards);
 
     const [genres, setGenres] = useState([]);
 
     const getGenres = async () => {
         try {
             const { data } = await axios(`${API_URL}/genres/`);
-            data ? setGenres(data) : alert("Genres not found.");
+            data ? setGenres(data) : dispatch(showAlert("Genres not found"));;
         } catch (error) {
-            alert(error.message);
+            console.error(error.message);
+            dispatch(showAlert("Oops, something has gone wrong."));
         }
     }
 
     const handleFilterChange = (event) => {
+        dispatch(setLoadingCards(true));
         dispatch(setFilters({ ...filters, [event.target.name]: event.target.value }));
         dispatch(fetchVideogames({ ...filters, [event.target.name]: event.target.value }));
     };
 
     const handleClearFilters = (event) => {
         event.preventDefault();
+        dispatch(setLoadingCards(true));
         dispatch(setFilters({
             ...filters,
             order: "",
@@ -46,6 +50,7 @@ export default function Filters(props) {
     useEffect(() => {
         getGenres();
         return () => {
+            dispatch(setLoadingCards(true));
             dispatch(setFilters({
                 name: "",
                 order: "",
@@ -62,7 +67,7 @@ export default function Filters(props) {
     }, []);
 
     return (
-        <div className="filters">
+        <div className={`filters ${isLoadingCards ? 'hidden' : ''}`}>
             <div className="form-group">
                 <label htmlFor="order">Sort by: </label>
                 <select name="order" id="order" className="pixel-input" onChange={handleFilterChange} value={filters.order}>
@@ -88,7 +93,7 @@ export default function Filters(props) {
                 </select>
             </div>
             <div className="form-group">
-                <label htmlFor="origin">Origin: </label>
+                <label htmlFor="origin">Source: </label>
                 <select name="origin" id="origin" className="pixel-input" onChange={handleFilterChange} value={filters.origin}>
                     <option value="">All</option>
                     <option value="DB">Database</option>

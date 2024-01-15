@@ -4,31 +4,41 @@ import { Link, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 import { API_URL } from '../utils/constants';
-import Loading from './Loading';
+import { Loading } from '../components';
 import axios from "axios";
+import { showAlert } from '../redux/actions';
+import { useDispatch } from 'react-redux';
 
 export default function Detail(props) {
     const { id } = useParams();
+
     const [videogame, setVideogame] = useState({});
     const [isLoading, setIsLoading] = useState(true);
+    const [notFound, setNotFound] = useState(false);
 
     useEffect(() => {
-        axios(`${API_URL}/videogames/${id}`).then(
-            ({ data }) => {
-                if (data.name) {
-                    setVideogame(data);
-                } else {
-                    window.alert('No videogames found');
+        try {
+            axios(`${API_URL}/videogames/${id}`).then(
+                ({ data }) => {
+                    if (data.name) {
+                        setVideogame(data);
+                        setIsLoading(false);
+                    }
                 }
-                setIsLoading(false);
-            }
-        );
+            );
+        } catch {
+            setNotFound(true);
+        }
     }, [id]);
 
     return (
         <div className="detail">
             <Loading isLoading={isLoading}></Loading>
-            <div className={`pixel-box ${isLoading ? 'hidden' : ''}`}>
+            <div className={notFound ? '': 'hidden'}>
+                <h2 className="game-over">GAME<br />OVER</h2>
+                <p>Videogame not found.</p>
+            </div>
+            <div className={`pixel-box ${isLoading || notFound ? 'hidden' : ''}`}>
                 <div className="detail-row">
                     <div className="detail-col">
                         <div className="detail-genres">
@@ -77,6 +87,9 @@ export default function Detail(props) {
                             ? <p className="detail-description">{videogame.description}</p>
                             : <div className="detail-description" dangerouslySetInnerHTML={{ __html: videogame.description }} />
                     }
+                </div>
+                <div className="detail-row">
+                    <small>SOURCE: {isNaN(videogame.id) ? "DB" : "API"}</small>
                 </div>
                 <Link to="/home">
                     <button className={isLoading ? 'hidden' : ''}>Back to Videogames</button>

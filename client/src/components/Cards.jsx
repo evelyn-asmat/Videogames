@@ -1,14 +1,17 @@
-import { useEffect, useState } from 'react';
+import { Card, Loading } from '../components';
 
-import Card from './Card';
 import Filters from './Filters';
 import Pagination from './Pagination';
+import { useSelector } from 'react-redux';
 
 export default function Cards(props) {
+    const isLoadingCards = useSelector(state => state.isLoadingCards);
+
     return (
         <div className="content">
+            <Loading isLoading={isLoadingCards}></Loading>
             <Filters></Filters>
-            <div className='cards'>
+            <div className={`cards ${isLoadingCards ? 'hidden' : ''}`}>
                 {props.videogames && props.videogames.length > 0 ? (
                     props.videogames.map((videogame) => {
                         return (

@@ -69,18 +69,20 @@ export default function Form(props) {
     const getPlatforms = async () => {
         try {
             const { data } = await axios(`${API_URL}/platforms/`);
-            data ? setPlaforms(data) : alert("Platforms not found.");
+            data ? setPlaforms(data) : dispatch(showAlert("Platforms not found."));;
         } catch (error) {
-            alert(error.message);
+            console.error(error.message);
+            dispatch(showAlert("Oops, something has gone wrong."));
         }
     }
 
     const getGenres = async () => {
         try {
             const { data } = await axios(`${API_URL}/genres/`);
-            data ? setGenres(data) : alert("Genres not found.");
+            data ? setGenres(data) : dispatch(showAlert("Genres not found."));;
         } catch (error) {
-            alert(error.message);
+            console.error(error.message);
+            dispatch(showAlert("Oops, something has gone wrong."));
         }
     }
 

@@ -7,6 +7,7 @@ export const SET_NEXT_PAGE = 'SET_NEXT_PAGE';
 export const SET_PREVIOUS_PAGE = 'SET_PREVIOUS_PAGE';
 export const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
 export const TOGGLE_ALERT = 'TOGGLE_ALERT';
+export const SET_LOADING_CARDS = 'SET_LOADING_CARDS';
 
 
 export const fetchVideogames = (filters, page) => {
@@ -20,9 +21,13 @@ export const fetchVideogames = (filters, page) => {
                     total: Math.ceil(response.headers['total-videogames'] / 15)
                 },
             });
-            dispatch({
+            await dispatch({
                 type: FETCH_VIDEOGAMES,
                 payload: response.data,
+            });
+            dispatch({
+                type: SET_LOADING_CARDS,
+                payload: false,
             });
         } catch (error) {
             alert(error.message);
@@ -35,14 +40,12 @@ export const setFilters = (filters) => ({
     payload: filters
 });
 
-export const setNextPage = (page) => ({
-    type: SET_NEXT_PAGE,
-    payload: page + 1
+export const setNextPage = () => ({
+    type: SET_NEXT_PAGE
 });
 
-export const setPreviousPage = (page) => ({
-    type: SET_PREVIOUS_PAGE,
-    payload: page - 1
+export const setPreviousPage = () => ({
+    type: SET_PREVIOUS_PAGE
 });
 
 export const setCurrentPage = (page) => ({
@@ -65,4 +68,9 @@ export const hideAlert = () => ({
         message: ""
     }
 })
+
+export const setLoadingCards = (loadingState) => ({
+    type: SET_LOADING_CARDS,
+    payload: loadingState
+});
 
