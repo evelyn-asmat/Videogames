@@ -1,1 +1,1 @@
-export const API_URL = 'http://localhost:3001';
+export const API_URL = 'https://videogames-api-to25.onrender.com:3001';
