@@ -42,7 +42,7 @@ const getVideogamesAPI = async (name) => {
     const videogamesApi = data.results && data.results.map(v => ({
         id: v.id,
         name: v.name,
-        platforms: v.platform && v.platforms.map(p => p.platform.name),
+        platforms: v.platforms && v.platforms.map(p => p.platform.name),
         image: v.background_image,
         released: v.released,
         rating: v.rating,
